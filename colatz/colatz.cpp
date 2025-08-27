@@ -5,7 +5,7 @@
 
 using namespace boost::multiprecision;
 
-const static uint64_t PRINT_VALUE = (1ULL << 29) - 1;
+const static uint64_t PRINT_VALUE = (1ULL << 25) - 1;
 
 static std::array<cpp_int, 64> power_three;
 static std::array<cpp_int, 64> sum_three;
@@ -25,13 +25,16 @@ void collatzSequence(uint64_t start_val) {
     cpp_int i = start_val;
     while (i >= start_val) {
         uint64_t low = static_cast<uint64_t>(i);
-        int n = std::countr_one(low) + 1;
-        i = (i >> n) * power_three[n] + sum_three[n];
+        uint64_t n = std::countr_one(low);
+		i >>= n + 1;
+        i = (i) * power_three[n] + sum_three[n];
+        i >>= std::countr_zero(low);
     }
 }
 
 int main() {
     uint64_t start = 3;
+	init_tables();
     while (true) {
         collatzSequence(start);
         start += 4;
