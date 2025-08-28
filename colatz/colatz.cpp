@@ -23,11 +23,12 @@ void init_tables() {
 
 void collatzSequence(uint64_t start_val) {
     cpp_int i = start_val;
-    while (i >= start_val) {
+	while (i >= start_val) {
         uint64_t low = static_cast<uint64_t>(i);
         uint64_t n = std::countr_one(low);
 		i >>= n + 1;
-        i = (i) * power_three[n] + sum_three[n];
+        i = i * power_three[n] + sum_three[n];
+        low = static_cast<uint64_t>(i);
         i >>= std::countr_zero(low);
     }
 }
