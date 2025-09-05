@@ -12,8 +12,8 @@ constexpr static uint64_t PRINT_VALUE = (1ULL << 31) - 1;
 constexpr static uint64_t K = 14; // set this up depending on your cpu cache size (prob depending on L1 and L2 cache)
 constexpr static uint64_t SIZE = 1 << K;
 
-std::array<uint8_t, SIZE> c_table;
-std::array<uint64_t, SIZE> d_table;
+static std::array<uint8_t, SIZE> c_table;
+static std::array<uint64_t, SIZE> d_table;
 
 static std::array<uint64_t, K> power_three;
 
