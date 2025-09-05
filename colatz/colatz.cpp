@@ -34,7 +34,7 @@ void init_tables() {
         d_table[b] = x;
     }
     uint64_t p = 1;
-    for (int i = 0; i < 64; ++i) {
+    for (int i = 0; i < K; ++i) {
         power_three[i] = p;
         p *= 3;
     }
